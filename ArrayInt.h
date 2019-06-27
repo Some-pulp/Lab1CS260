@@ -41,7 +41,7 @@ ArrayInt::ArrayInt(int n){
 }
 
 int ArrayInt::getAt(int index){
-    if(index < 0 || index > size)
+    if(index < 0 || index > size - 1)
         throw std::out_of_range("Out of range");
 
      return arr[index];
