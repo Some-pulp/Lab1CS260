@@ -41,10 +41,10 @@ ArrayInt::ArrayInt(int n){
 }
 
 int ArrayInt::getAt(int index){
-    if(index < 0 || index > size - 1)
+    if(index < 0 || index > size-1)
         throw std::out_of_range("Out of range");
 
-     return arr[index];
+    return arr[index];
 }
 
 void ArrayInt::setAt(int index, int value){
@@ -58,18 +58,20 @@ int ArrayInt::getSize(){return size;}
 
 //copy contents of old into new
 void ArrayInt::resize(int newSize){
+    int* newArr = new int[newSize];
+    arr = newArr;
+    delete[] newArr;
 
 }
 
-/*
+//if newer size is greater, resize, update size
 void ArrayInt::setSize(int size){
     if(size > this->size) {
         resize(size);
         this->size = size;
     }
-
 }
- */
+
 
 //void ArrayInt::append(int value){}
 //void ArrayInt::insertAt(int index, int value){}
