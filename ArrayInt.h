@@ -74,6 +74,7 @@ void ArrayInt::setSize(int size){
     if(size > this->size) {
        int* tmp = new int[size];
        arr = tmp;
+       this->size = size;
        delete[] tmp;
     }
 }
