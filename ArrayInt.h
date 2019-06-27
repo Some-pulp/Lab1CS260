@@ -17,13 +17,15 @@ class ArrayInt{
 private:
     int* arr;
     int size = 10;
+    int counter = 0;
+    bool isFull = false;
 public:
     ArrayInt();
     ArrayInt(int n);
     int getAt(int index);
     void setAt(int index, int value);
     int getSize();
-    void resize(int newSize);
+    void resize();
     void setSize(int size);
     void append(int value);
     void insertAt(int index, int value);
@@ -41,10 +43,10 @@ ArrayInt::ArrayInt(int n){
 }
 
 int ArrayInt::getAt(int index){
-    if(index < 0 || index > size - 1)
+    if(index < 0 || index > size-1)
         throw std::out_of_range("Out of range");
 
-     return arr[index];
+    return arr[index];
 }
 
 void ArrayInt::setAt(int index, int value){
@@ -57,21 +59,37 @@ void ArrayInt::setAt(int index, int value){
 int ArrayInt::getSize(){return size;}
 
 //copy contents of old into new
-void ArrayInt::resize(int newSize){
+//Note: resize is for append when the array is full, double the size
+void ArrayInt::resize(){
+    int* newArr = new int[size * 2];
+    size *= 2;
+    arr = newArr;
+    delete[] newArr;
 
+}
+
+//if newer size is greater, resize, update size
+//Note: setSize is for whatever size is required
+void ArrayInt::setSize(int size){
+    if(size > this->size) {
+        resize();
+    }
 }
 
 /*
-void ArrayInt::setSize(int size){
-    if(size > this->size) {
-        resize(size);
-        this->size = size;
-    }
+Add value at next available index
+If array is full, resize to size * 2 and copy values.
 
-}
+Next location is:
+ -0 if no items added
+ -the next location if only appends have been done
+ -if setAt() is called, one larger than the largest index used for setAt()
  */
 
-//void ArrayInt::append(int value){}
+void ArrayInt::append(int value){
+    if(isFull)
+        resize();
+}
 //void ArrayInt::insertAt(int index, int value){}
 //int ArrayInt::removeAt(int index{}
 
