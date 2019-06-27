@@ -71,9 +71,16 @@ void ArrayInt::setSize(int size){
         this->size = size;
     }
 }
+/*
+Add value at next available index
+If array is full, resize to size * 2 and copy values.
 
-
-//void ArrayInt::append(int value){}
+Next location is:
+ -0 if no items added
+ -the next location if only appends have been done
+ -if setAt() is called, one larger than the largest index used for setAt()
+ */
+void ArrayInt::append(int value){}
 //void ArrayInt::insertAt(int index, int value){}
 //int ArrayInt::removeAt(int index{}
 
